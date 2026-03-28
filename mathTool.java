@@ -70,10 +70,114 @@ public class MathToolsGUI extends JFrame {
     }
 
  private JPanel createPart2Panel() {
-        // TODO: Người 2 viết code ở đây
-        JPanel panel = new JPanel();
-        panel.add(new JLabel("Chờ người 2 hoàn thiện..."));
-        return panel;
+        JPanel mainPanel = new JPanel(new BorderLayout());
+        mainPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        JPanel buttonPanel = new JPanel(new GridLayout(1, 2, 10, 10));
+        JButton btnMinMax = new JButton("Tìm Max/Min");
+        JButton btnSort = new JButton("Sắp xếp tăng dần");
+        buttonPanel.add(btnMinMax);
+        buttonPanel.add(btnSort);
+        CardLayout cardLayout = new CardLayout();
+        JPanel cardPanel = new JPanel(cardLayout)
+        JPanel minMaxPanel = new JPanel(new GridLayout(4, 2, 5, 5));
+        JLabel lblNum1 = new JLabel("Số thứ nhất:");
+        JTextField txtNum1 = new JTextField();
+        JLabel lblNum2 = new JLabel("Số thứ hai:");
+        JTextField txtNum2 = new JTextField();
+        JButton btnFindMax = new JButton("Tìm số lớn nhất");
+        JButton btnFindMin = new JButton("Tìm số nhỏ nhất");
+        JTextArea txtResultMinMax = new JTextArea();
+        txtResultMinMax.setEditable(false);
+
+        btnFindMax.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    double num1 = Double.parseDouble(txtNum1.getText());
+                    double num2 = Double.parseDouble(txtNum2.getText());
+                    double max = Math.max(num1, num2);
+                    txtResultMinMax.setText("Số lớn nhất: " + max);
+                } catch (NumberFormatException ex) {
+                    txtResultMinMax.setText("Vui lòng nhập số hợp lệ!");
+                }
+            }
+        });
+
+        btnFindMin.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    double num1 = Double.parseDouble(txtNum1.getText());
+                    double num2 = Double.parseDouble(txtNum2.getText());
+                    double min = Math.min(num1, num2);
+                    txtResultMinMax.setText("Số nhỏ nhất: " + min);
+                } catch (NumberFormatException ex) {
+                    txtResultMinMax.setText("Vui lòng nhập số hợp lệ!");
+                }
+            }
+        });
+
+        minMaxPanel.add(lblNum1);
+        minMaxPanel.add(txtNum1);
+        minMaxPanel.add(lblNum2);
+        minMaxPanel.add(txtNum2);
+        minMaxPanel.add(btnFindMax);
+        minMaxPanel.add(btnFindMin);
+        minMaxPanel.add(new JLabel("Kết quả:"));
+        minMaxPanel.add(new JScrollPane(txtResultMinMax));
+
+        
+        JPanel sortPanel = new JPanel(new GridLayout(4, 2, 5, 5));
+        JLabel lblA1 = new JLabel("Số thứ nhất:");
+        JTextField txtA1 = new JTextField();
+        JLabel lblB1 = new JLabel("Số thứ hai:");
+        JTextField txtB1 = new JTextField();
+        JButton btnSortAsc = new JButton("Sắp xếp tăng dần");
+        JTextArea txtResultSort = new JTextArea();
+        txtResultSort.setEditable(false);
+
+        btnSortAsc.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    double num1 = Double.parseDouble(txtA1.getText());
+                    double num2 = Double.parseDouble(txtB1.getText());
+                    if (num1 <= num2) {
+                        txtResultSort.setText(num1 + ", " + num2);
+                    } else {
+                        txtResultSort.setText(num2 + ", " + num1);
+                    }
+                } catch (NumberFormatException ex) {
+                    txtResultSort.setText("Vui lòng nhập số hợp lệ!");
+                }
+            }
+        });
+
+        sortPanel.add(lblA1);
+        sortPanel.add(txtA1);
+        sortPanel.add(lblB1);
+        sortPanel.add(txtB1);
+        sortPanel.add(btnSortAsc);
+        sortPanel.add(new JLabel());
+        sortPanel.add(new JLabel("Kết quả:"));
+        sortPanel.add(new JScrollPane(txtResultSort));
+
+       
+        cardPanel.add(minMaxPanel, "MinMax");
+        cardPanel.add(sortPanel, "Sort");
+
+      
+        btnMinMax.addActionListener(e -> cardLayout.show(cardPanel, "MinMax"));
+        btnSort.addActionListener(e -> cardLayout.show(cardPanel, "Sort"));
+
+       
+        cardLayout.show(cardPanel, "MinMax");
+
+        mainPanel.add(buttonPanel, BorderLayout.NORTH);
+        mainPanel.add(cardPanel, BorderLayout.CENTER);
+
+        return mainPanel;
+
     }
 
     private JPanel createPart3Panel() {
