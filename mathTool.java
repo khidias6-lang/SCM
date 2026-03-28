@@ -180,10 +180,32 @@ public class MathToolsGUI extends JFrame {
 
     }
 
-    private JPanel createPart3Panel() {
-        // TODO: Người 3 viết code ở đây
-        JPanel panel = new JPanel();
-        panel.add(new JLabel("Chờ người 3 hoàn thiện..."));
+   private JPanel createPart3Panel() {
+        JPanel panel = new JPanel(new GridLayout(3, 2, 5, 5));
+        panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+
+        JLabel lblN = new JLabel("Nhập số nguyên:");
+        JTextField txtN = new JTextField();
+        JButton btnCheck = new JButton("Kiểm tra");
+        JTextArea txtRes = new JTextArea();
+        txtRes.setEditable(false);
+
+        btnCheck.addActionListener(e -> {
+            String original = txtN.getText().trim();
+            String reversed = new StringBuilder(original).reverse().toString();
+            if (original.isEmpty()) {
+                txtRes.setText("Vui lòng nhập số!");
+            } else if (original.equals(reversed)) {
+                txtRes.setText(original + " là số đối xứng.");
+            } else {
+                txtRes.setText(original + " không phải số đối xứng.");
+            }
+        });
+
+        panel.add(lblN); panel.add(txtN);
+        panel.add(btnCheck); panel.add(new JLabel());
+        panel.add(new JLabel("Kết quả:")); panel.add(new JScrollPane(txtRes));
+
         return panel;
     }
 
