@@ -1,0 +1,26 @@
+import java.util.*;
+public class baitapaa {
+	private String name;
+	private int age;
+	private double gpa;
+	
+	public baitapaa(String string, int i, double d) {
+	}
+	public void Student(String name , int age, double gpa) {
+		this.name=name;
+		this.age=age;
+		this.gpa=gpa;
+	}
+	public void display() {
+		System.out.println("Name: "+name);
+		System.out.println("age: "+age);
+		System.out.println("gpa: "+gpa);
+	}
+
+	public static void main(String[] args) {
+		baitapaa t= new baitapaa("Son",20,3.5);
+		t.display();
+
+	}
+
+}

@@ -1,0 +1,9 @@
+
+public class baitapaa {
+
+	public static void main(String[] args) {
+		System.out.println("Nguyen Van Phuc Thien.");
+
+	}
+
+}
