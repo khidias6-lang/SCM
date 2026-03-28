@@ -197,4 +197,4 @@ public class MathToolsGUI extends JFrame {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> new MathToolsGUI().setVisible(true));
     }
-} giúp tôi hoàn thành code này 
+}
