@@ -1,70 +1,55 @@
-package th3;
+    private JPanel createPart4Panel() {
+        JPanel panel = new JPanel(new GridLayout(4, 2, 5, 5));
+        panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
-import java.util.*;
-class Node {
-    int info;
-    Node next;
-	public int data;
+        JLabel lblNum1 = new JLabel("Số thứ nhất:");
+        JTextField txtNum1 = new JTextField();
+        JLabel lblNum2 = new JLabel("Số thứ hai:");
+        JTextField txtNum2 = new JTextField();
+        JButton btnFindGCD = new JButton("Tìm ƯCLN");
+        JTextArea txtResult = new JTextArea();
+        txtResult.setEditable(false);
 
-    Node(int x) {
-        info = x;
-        next = null;
+        btnFindGCD.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    int num1 = Integer.parseInt(txtNum1.getText());
+                    int num2 = Integer.parseInt(txtNum2.getText());
+                    int gcd = findGCD(num1, num2);
+                    txtResult.setText("Ước chung lớn nhất: " + gcd);
+                } catch (NumberFormatException ex) {
+                    txtResult.setText("Vui lòng nhập số nguyên hợp lệ!");
+                }
+            }
+        });
+
+        panel.add(lblNum1);
+        panel.add(txtNum1);
+        panel.add(lblNum2);
+        panel.add(txtNum2);
+        panel.add(btnFindGCD);
+        panel.add(new JLabel());
+        panel.add(new JLabel("Kết quả:"));
+        panel.add(new JScrollPane(txtResult));
+
+        return panel;
     }
-}
 
-public class b {
-    Node head, tail;
-
-    b() {
-        head = tail = null;
-    }
-
-    boolean EmptyQ() {
-        return head == null;
-    }
-
-    void AddQ(int x) {
-        Node t = new Node(x);
-        if (head == null)
-            head = tail = t;
-        else {
-            tail.next = t;
-            tail = t;
+    // Hàm hỗ trợ tìm ƯCLN (private)
+    private int findGCD(int a, int b) {
+        a = Math.abs(a);
+        b = Math.abs(b);
+        while (b != 0) {
+            int temp = b;
+            b = a % b;
+            a = temp;
         }
+        return a;
     }
 
-    int RemoveQ() {
-    	int x = 0;
-
-        if (head == null)
-            System.out.println("\n Hang doi rong");
-        else {
-            x = head.data;
-
-            if (head.next == null)
-                head = tail = null;
-            else
-                head = head.next;
-        }
-
-        return x;
+    // ==================== HÀM MAIN ====================
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> new MathToolsGUI().setVisible(true));
     }
-
-	public static void main(String[] args) {
-		b Q = new b();
-
-        Q.AddQ(3); Q.AddQ(2); Q.AddQ(7);
-        Q.AddQ(6); Q.AddQ(9); Q.AddQ(8);
-
-        while (!Q.EmptyQ()) {
-            int x = Q.RemoveQ();
-            System.out.print(x + " ");
-        }
-
-        System.out.print("\nXONG!");
-
-	}
-
-}
-
 
