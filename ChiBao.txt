@@ -1,46 +1,28 @@
-package luyen_tap;
+private JPanel createPart3Panel() {
+        JPanel panel = new JPanel(new GridLayout(3, 2, 5, 5));
+        panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
-public class sum1n {
-    private String name;
-    private int age;
-    private double gpa;
+        JLabel lblN = new JLabel("Nhập số nguyên:");
+        JTextField txtN = new JTextField();
+        JButton btnCheck = new JButton("Kiểm tra");
+        JTextArea txtRes = new JTextArea();
+        txtRes.setEditable(false);
 
-    public baitapaa(String name, int age, double gpa) {
-        this.name = name;
-        this.age = age;
-        this.gpa = gpa;
+        btnCheck.addActionListener(e -> {
+            String original = txtN.getText().trim();
+            String reversed = new StringBuilder(original).reverse().toString();
+            if (original.isEmpty()) {
+                txtRes.setText("Vui lòng nhập số!");
+            } else if (original.equals(reversed)) {
+                txtRes.setText(original + " là số đối xứng.");
+            } else {
+                txtRes.setText(original + " không phải số đối xứng.");
+            }
+        });
+
+        panel.add(lblN); panel.add(txtN);
+        panel.add(btnCheck); panel.add(new JLabel());
+        panel.add(new JLabel("Kết quả:")); panel.add(new JScrollPane(txtRes));
+
+        return panel;
     }
-
-    public String getName() {
-        return name;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public double getGpa() {
-        return gpa;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public void setGpa(double gpa) {
-        this.gpa = gpa;
-    }
-
-    public void display() {
-        System.out.println("Name: " + name + ", Age: " + age + ", GPA: " + gpa);
-    }
-
-	public static void main(String[] args) {
-		
-	}
-
-}
