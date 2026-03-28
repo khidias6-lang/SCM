@@ -188,10 +188,54 @@ public class MathToolsGUI extends JFrame {
     }
 
     private JPanel createPart4Panel() {
-        // TODO: Người 4 viết code ở đây
-        JPanel panel = new JPanel();
-        panel.add(new JLabel("Chờ người 4 hoàn thiện..."));
-        return panel;
+        JPanel panel = new JPanel(new GridLayout(4, 2, 5, 5));
+        panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+
+        JLabel lblNum1 = new JLabel("Số thứ nhất:");
+        JTextField txtNum1 = new JTextField();
+        JLabel lblNum2 = new JLabel("Số thứ hai:");
+        JTextField txtNum2 = new JTextField();
+        JButton btnFindGCD = new JButton("Tìm ƯCLN");
+        JTextArea txtResult = new JTextArea();
+        txtResult.setEditable(false);
+
+        btnFindGCD.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    int num1 = Integer.parseInt(txtNum1.getText());
+                    int num2 = Integer.parseInt(txtNum2.getText());
+                    int gcd = findGCD(num1, num2);
+                    txtResult.setText("Ước chung lớn nhất: " + gcd);
+                } catch (NumberFormatException ex) {
+                    txtResult.setText("Vui lòng nhập số nguyên hợp lệ!");
+                }
+            }
+        });
+
+        panel.add(lblNum1);
+        panel.add(txtNum1);
+        panel.add(lblNum2);
+        panel.add(txtNum2);
+        panel.add(btnFindGCD);
+        panel.add(new JLabel());
+        panel.add(new JLabel("Kết quả:"));
+        panel.add(new JScrollPane(txtResult));
+
+        return panel;
+    }
+
+    // Hàm hỗ trợ tìm ƯCLN (private)
+    private int findGCD(int a, int b) {
+        a = Math.abs(a);
+        b = Math.abs(b);
+        while (b != 0) {
+            int temp = b;
+            b = a % b;
+            a = temp;
+        }
+        return a;
+
     }
 
     public static void main(String[] args) {
