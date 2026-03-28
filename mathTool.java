@@ -23,9 +23,49 @@ public class MathToolsGUI extends JFrame {
         add(tabbedPane);
     }
     private JPanel createPart1Panel() {
-        // TODO: Người 1 viết code ở đây
-        JPanel panel = new JPanel();
-        panel.add(new JLabel("Chờ người 1 hoàn thiện..."));
+        JPanel panel = new JPanel(new GridLayout(4, 2, 5, 5));
+        panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+
+        JLabel lblA = new JLabel("Hệ số a:");
+        JTextField txtA = new JTextField();
+        JLabel lblB = new JLabel("Hệ số b:");
+        JTextField txtB = new JTextField();
+        JButton btnSolve = new JButton("Giải phương trình");
+        JTextArea txtResult = new JTextArea();
+        txtResult.setEditable(false);
+
+        btnSolve.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    double a = Double.parseDouble(txtA.getText());
+                    double b = Double.parseDouble(txtB.getText());
+
+                    if (a == 0) {
+                        if (b == 0) {
+                            txtResult.setText("Phương trình có vô số nghiệm");
+                        } else {
+                            txtResult.setText("Phương trình vô nghiệm");
+                        }
+                    } else {
+                        double solution = -b / a;
+                        txtResult.setText("Nghiệm: x = " + solution);
+                    }
+                } catch (NumberFormatException ex) {
+                    txtResult.setText("Vui lòng nhập số hợp lệ!");
+                }
+            }
+        });
+
+        panel.add(lblA);
+        panel.add(txtA);
+        panel.add(lblB);
+        panel.add(txtB);
+        panel.add(btnSolve);
+        panel.add(new JLabel()); // ô trống
+        panel.add(new JLabel("Kết quả:"));
+        panel.add(new JScrollPane(txtResult));
+
         return panel;
     }
 
