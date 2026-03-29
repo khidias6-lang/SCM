@@ -180,12 +180,6 @@ public class MathToolsGUI extends JFrame {
 
     }
 
-    private JPanel createPart3Panel() {
-        // TODO: Người 3 viết code ở đây
-        JPanel panel = new JPanel();
-        panel.add(new JLabel("Chờ người 3 hoàn thiện..."));
-        return panel;
-    }
 
     private JPanel createPart4Panel() {
         JPanel panel = new JPanel(new GridLayout(4, 2, 5, 5));
