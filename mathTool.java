@@ -310,7 +310,8 @@ private JPanel createPart3Panel() {
         return panel; 
     }
 
-    // Hàm hỗ trợ tìm ƯCLN (private)
+    // Hàm hỗ trợ tìm ƯCLN
+
     private int findGCD(int a, int b) {
         a = Math.abs(a);
         b = Math.abs(b);
