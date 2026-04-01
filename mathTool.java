@@ -183,6 +183,19 @@ private JPanel createPart3Panel() {
         JPanel panel = new JPanel(new GridLayout(3, 2, 5, 5));
         panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
+<<<<<<< HEAD
+        private JPanel createPart3Panel() {
+        JPanel panel = new JPanel(new GridLayout(3, 2, 5, 5));
+        panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+=======
+        JLabel lblNumber = new JLabel("Nhập số:");
+        JTextField txtNumber = new JTextField();
+        JButton btnCheck = new JButton("Kiểm tra");
+        JTextArea txtResult = new JTextArea();
+        txtResult.setEditable(false);
+>>>>>>> 577cf9fadaa7f45540e5012304ab15ec49cadd50
+
+<<<<<<< HEAD
         JLabel lblNumber = new JLabel("Nhập số:");
         JTextField txtNumber = new JTextField();
         JButton btnCheck = new JButton("Kiểm tra");
@@ -223,6 +236,42 @@ private JPanel createPart3Panel() {
     }
 
 
+=======
+        btnCheck.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    int number = Integer.parseInt(txtNumber.getText());
+                    if (isPalindrome(number)) {
+                        txtResult.setText(number + " là số đối xứng");
+                    } else {
+                        txtResult.setText(number + " không phải số đối xứng");
+                    }
+                } catch (NumberFormatException ex) {
+                    txtResult.setText("Vui lòng nhập số nguyên hợp lệ!");
+                }
+            }
+        });
+
+        panel.add(lblNumber);
+        panel.add(txtNumber);
+        panel.add(btnCheck);
+        panel.add(new JLabel());
+        panel.add(new JLabel("Kết quả:"));
+        panel.add(new JScrollPane(txtResult));
+
+        return panel;
+    }
+
+    // Hàm hỗ trợ kiểm tra số đối xứng (private)
+    private boolean isPalindrome(int num) {
+        String str = Integer.toString(num);
+        String reversed = new StringBuilder(str).reverse().toString();
+        return str.equals(reversed);
+    }
+
+
+>>>>>>> 577cf9fadaa7f45540e5012304ab15ec49cadd50
     private JPanel createPart4Panel() {
         JPanel panel = new JPanel(new GridLayout(4, 2, 5, 5));
         panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
@@ -258,7 +307,7 @@ private JPanel createPart3Panel() {
         panel.add(new JLabel("Kết quả:"));
         panel.add(new JScrollPane(txtResult));
 
-        return panel;
+        return panel; 
     }
 
     // Hàm hỗ trợ tìm ƯCLN (private)
